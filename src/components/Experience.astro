@@ -1,0 +1,57 @@
+---
+import ContentRow from "./ContentRow.astro"
+import NetflixCard from "./NetflixCard.astro"
+
+const EXPERIENCE = [
+  {
+    title: "Lead Teaching Assistant",
+    subtitle: "USC Viterbi K-12 STEM Center",
+    date: "Apr 2025 - July 2025",
+    description: "Supported Dr. Darin Gray in delivering the 'Discover Engineering' course — a four-week, 3-unit program introducing high school students to various engineering disciplines — by collaborating on lectures and hands-on projects, and designed comprehensive instructional materials including class presentations, detailed notes, weekly overviews, and structured activity plans to ensure alignment with the course's interdisciplinary objectives.",
+    gradient: "from-yellow-900 to-amber-700",
+    icon: "👨‍🏫",
+    tags: ["Teaching", "STEM", "Engineering"],
+  },
+  {
+    title: "Research Assistant",
+    subtitle: "IMSC @ USC",
+    date: "Mar 2025 - Present",
+    description: "Collaborated on the design and implementation of an interactive 'POI Game' crowdsourced data collection platform to gather labeled training data for machine learning models by presenting users with timestamped latitude/longitude points and prompting them to identify the most likely visited point of interest; and worked under the guidance of Dr. John Krumm, engaging in interdisciplinary discussions to align technical developments in location data privacy and mobility analysis with real-world applications.",
+    gradient: "from-purple-900 to-purple-700",
+    icon: "🔬",
+    tags: ["ML", "Research", "Data Collection"],
+  },
+  {
+    title: "Student Worker",
+    subtitle: "USC Auxiliary Services",
+    date: "Dec 2024 - Mar 2025",
+    description: "Assisted hundreds of students, faculty, and visitors at the USC Bookstore by providing tailored product recommendations that enhanced their experience through attentive and efficient service; served as a front-line greeter during peak hours, managing store flow and offering first-touch support to both new and returning customers; and handled invoicing and point-of-sale operations with accuracy and strong multitasking skills in a fast-paced retail environment.",
+    gradient: "from-green-900 to-green-700",
+    icon: "🏫",
+    tags: ["Customer Service", "Retail", "POS"],
+  },
+  {
+    title: "Software Engineer Intern",
+    subtitle: "Microsoft Corporation, Hyderabad",
+    date: "June 2023 - July 2023",
+    description: "Contributed to the ODSP (OneDrive and SharePoint) team, focusing on enhancing operational efficiency and monitoring systems. Developed interactive dashboards to track online performance of Microsoft's products with real-time insights. Spearheaded the creation of a Power Automate tool that generated automated alerts whenever key processes exceeded expected execution times, streamlining incident response and optimizing system reliability.",
+    gradient: "from-sky-900 to-sky-700",
+    icon: "💼",
+    tags: ["Microsoft", "Dashboards", "Power Automate", "ODSP"],
+  },
+]
+---
+
+<ContentRow title="EXPERIENCE" id="experience">
+  {EXPERIENCE.map((exp) => (
+    <NetflixCard
+      title={exp.title}
+      subtitle={exp.subtitle}
+      date={exp.date}
+      description={exp.description}
+      gradient={exp.gradient}
+      icon={exp.icon}
+      tags={exp.tags}
+    />
+  ))}
+</ContentRow>

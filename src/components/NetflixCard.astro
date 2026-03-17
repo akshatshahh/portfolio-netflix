@@ -1,0 +1,74 @@
+---
+interface Props {
+  title: string
+  subtitle?: string
+  date?: string
+  image?: string
+  gradient?: string
+  icon?: string
+  tags?: string[]
+  description: string
+  links?: { label: string; href: string }[]
+  grade?: string
+}
+
+const { title, subtitle, date, image, gradient, icon, tags, description, links, grade } = Astro.props
+
+const cardGradient = gradient || "from-gray-800 to-gray-900"
+---
+
+<div class="netflix-card group/card flex-shrink-0 w-[250px] sm:w-[280px] md:w-[300px] cursor-pointer relative">
+  <!-- Card thumbnail -->
+  <div class="relative aspect-video rounded overflow-hidden bg-gray-200 dark:bg-netflix-dark-lighter transition-all duration-300 group-hover/card:scale-105 group-hover/card:z-10 group-hover/card:shadow-2xl group-hover/card:shadow-black/50">
+    {image ? (
+      <img src={image} alt={title} class="w-full h-full object-cover" loading="lazy" />
+    ) : (
+      <div class={`w-full h-full bg-gradient-to-br ${cardGradient} flex flex-col items-center justify-center p-4`}>
+        <span class="text-3xl mb-2">{icon}</span>
+        <span class="text-white font-display text-lg tracking-wider text-center">{title}</span>
+      </div>
+    )}
+
+    <!-- Hover overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+      <h3 class="text-white font-semibold text-sm leading-tight mb-1">{title}</h3>
+      {subtitle && <p class="text-netflix-light-gray text-xs mb-1">{subtitle}</p>}
+      {date && <p class="text-netflix-gray text-xs mb-2">{date}</p>}
+      {grade && <p class="text-netflix-red text-xs font-semibold mb-2">{grade}</p>}
+
+      {tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-1 mb-2">
+          {tags.map((tag) => (
+            <span class="text-[10px] px-1.5 py-0.5 bg-white/10 text-white rounded">{tag}</span>
+          ))}
+        </div>
+      )}
+
+      <button
+        class="detail-trigger mt-1 flex items-center gap-1 text-xs text-white bg-white/20 hover:bg-white/30 rounded px-2 py-1 w-fit transition-colors cursor-pointer"
+        data-title={title}
+        data-subtitle={subtitle || ""}
+        data-date={date || ""}
+        data-description={description}
+        data-image={image || ""}
+        data-gradient={cardGradient}
+        data-icon={icon || ""}
+        data-tags={tags ? tags.join(",") : ""}
+        data-links={links ? JSON.stringify(links) : "[]"}
+        data-grade={grade || ""}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        More Info
+      </button>
+    </div>
+  </div>
+
+  <!-- Title below card (visible always) -->
+  <p class="mt-2 text-xs text-gray-600 dark:text-netflix-gray truncate">{title}</p>
+</div>
+
+<style>
+  .netflix-card {
+    scroll-snap-align: start;
+  }
+</style>

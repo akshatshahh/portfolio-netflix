@@ -1,0 +1,39 @@
+---
+import ContentRow from "./ContentRow.astro"
+import NetflixCard from "./NetflixCard.astro"
+
+const EDUCATION = [
+  {
+    title: "Master of Science",
+    subtitle: "USC Viterbi School of Engineering",
+    date: "2024 - 2026",
+    grade: "3.55 GPA",
+    description: "Specialization in Computer Science. Relevant coursework includes Analysis of Algorithms, Database Systems, Applied Natural Language Processing, Web Technologies, Advanced Mobile Devices and Game Consoles, Software Architectures, Applied Cryptography and Information Retrieval and Web Search Engines.",
+    gradient: "from-red-900 to-red-700",
+    icon: "🎓",
+  },
+  {
+    title: "Bachelor of Technology",
+    subtitle: "Indus University, Ahmedabad",
+    date: "2020 - 2024",
+    grade: "3.86 GPA",
+    description: "Specialization in Computer Science and Engineering. Relevant coursework includes Data Structures, Algorithms, Machine Learning, Web Development, Operating System and more.",
+    gradient: "from-blue-900 to-blue-700",
+    icon: "📚",
+  },
+]
+---
+
+<ContentRow title="EDUCATION" id="education">
+  {EDUCATION.map((edu) => (
+    <NetflixCard
+      title={edu.title}
+      subtitle={edu.subtitle}
+      date={edu.date}
+      grade={edu.grade}
+      description={edu.description}
+      gradient={edu.gradient}
+      icon={edu.icon}
+    />
+  ))}
+</ContentRow>

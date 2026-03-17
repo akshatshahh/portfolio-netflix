@@ -1,0 +1,67 @@
+---
+import ContentRow from "./ContentRow.astro"
+import NetflixCard from "./NetflixCard.astro"
+
+const PROJECTS = [
+  {
+    title: "Chase - Unity WebGL Game",
+    description: "Developed as a team of 5 for USC's CSCI 526 Advanced Mobile Devices and Game Consoles course, Chase is an interactive Unity WebGL game featuring real-time gameplay mechanics, physics-based interactions, and dynamic level design. The team collaborated on game architecture, player controls, enemy AI behavior, and UI systems, delivering a polished browser-playable experience optimized for performance across devices.",
+    image: "/projects/chase-game.png",
+    tags: ["Unity", "JavaScript", "Game Dev"],
+    links: [{ label: "Play Game", href: "https://davidzhang0710.github.io/CS526/Gold/index.html" }],
+  },
+  {
+    title: "Multilingual Self-Debugging Framework",
+    description: "Developed a multilingual self-debugging framework for Python and JavaScript, performing code correction using Large Language Models (LLMs), inspired by the LDB (LLM Debugger) paradigm. Incorporated static Control Flow Graph (CFG) analysis and dynamic execution tracing to enable block-wise feedback for iterative debugging, leveraging MBPP and MdEval datasets to improve accuracy by 7% over baseline prompting.",
+    image: "/projects/self-debugging-framework.png",
+    tags: ["Python", "JavaScript", "StarCoder", "LLMs"],
+    links: [{ label: "View Paper", href: "https://drive.google.com/file/d/1nxcaamAEiuMYY_BZTixaCZxWn5AIymnG/view?usp=share_link" }],
+  },
+  {
+    title: "Artist Search App",
+    description: "Created as part of USC's CSCI 571 Web Technologies course, this full-stack application integrates the Artsy API with a Node.js and React stack to let users search for artists, explore their artworks and paintings, and view detailed artist profiles in the browser.",
+    image: "/projects/artist-search-app.png",
+    tags: ["Node.js", "React", "Tailwind CSS", "Artsy API"],
+    links: [{ label: "Live Demo", href: "https://artist-search-app.wl.r.appspot.com/" }],
+  },
+  {
+    title: "Brief Bytes",
+    description: "Designed and developed Brief Bytes, an innovative web platform using Svelte, JavaScript, Node.js, and PocketBase, aimed at simplifying news consumption for time-constrained users. The platform employs web scraping techniques to gather articles and machine learning for summarization, delivering concise yet informative summaries while offering the option to access full articles.",
+    image: "/projects/briefbytes.png",
+    tags: ["Svelte", "Node.js", "TensorFlow", "PocketBase"],
+    links: [{ label: "Code", href: "https://github.com/Suthar-Naresh/brief-bytes" }],
+  },
+  {
+    title: "Scholarship Finder",
+    description: "Developed a web scraping system using BeautifulSoup to collect and parse scholarship data from multiple online sources. Implemented ML-based matching with scikit-learn to analyze user input and generate customized scholarship recommendations, improving search accuracy by 40%.",
+    image: "/projects/scholarshipfinder.png",
+    tags: ["Python", "Streamlit", "BeautifulSoup", "scikit-learn"],
+    links: [
+      { label: "Live Demo", href: "https://aagam051-scholarship-finder-hackathon-t5joad.streamlit.app" },
+      { label: "Code", href: "https://github.com/Aagam051/Scholarship-Finder" },
+    ],
+  },
+  {
+    title: "Movie Recommender System",
+    description: "Engineered a content-based movie recommender system with TF-IDF vectorization and cosine similarity algorithms, attaining a 30% improvement in recommendation relevance for a dataset of 5000+ movies. Designed and deployed a responsive web application using Streamlit, achieving a 95% user satisfaction rate.",
+    image: "/projects/movie reccomender.png",
+    tags: ["Python", "Streamlit", "TF-IDF", "Cosine Similarity"],
+    links: [
+      { label: "Live Demo", href: "https://moviereccomender.streamlit.app" },
+      { label: "Code", href: "https://github.com/akshatshahh/movie-recommender-microsoft" },
+    ],
+  },
+]
+---
+
+<ContentRow title="FEATURED PROJECTS" id="projects">
+  {PROJECTS.map((project) => (
+    <NetflixCard
+      title={project.title}
+      description={project.description}
+      image={project.image}
+      tags={project.tags}
+      links={project.links}
+    />
+  ))}
+</ContentRow>

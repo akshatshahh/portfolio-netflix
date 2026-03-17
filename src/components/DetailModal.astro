@@ -1,0 +1,106 @@
+<!-- Modal backdrop + container -->
+<div id="detail-modal" class="fixed inset-0 z-[100] hidden">
+  <!-- Backdrop -->
+  <div id="modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+  <!-- Modal content -->
+  <div class="absolute inset-x-0 bottom-0 top-16 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:top-[10vh] md:bottom-auto md:w-full md:max-w-[850px] md:max-h-[80vh] overflow-y-auto rounded-t-lg md:rounded-lg bg-white dark:bg-netflix-dark-lighter shadow-2xl">
+    <!-- Banner area -->
+    <div id="modal-banner" class="relative h-48 md:h-64 w-full overflow-hidden rounded-t-lg">
+      <div id="modal-banner-img" class="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-netflix-dark-lighter via-transparent to-transparent"></div>
+
+      <!-- Close button -->
+      <button id="modal-close" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-netflix-dark/80 dark:bg-netflix-dark/80 flex items-center justify-center hover:bg-netflix-dark transition-colors cursor-pointer z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Info -->
+    <div class="px-6 md:px-10 pb-8 -mt-10 relative z-10">
+      <h2 id="modal-title" class="font-display text-2xl md:text-3xl tracking-wider text-gray-900 dark:text-white mb-1"></h2>
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span id="modal-subtitle" class="text-sm text-gray-600 dark:text-netflix-light-gray"></span>
+        <span id="modal-date" class="text-sm text-gray-500 dark:text-netflix-gray"></span>
+        <span id="modal-grade" class="text-sm font-semibold text-netflix-red"></span>
+      </div>
+
+      <p id="modal-description" class="text-sm md:text-base text-gray-700 dark:text-netflix-light-gray leading-relaxed mb-6"></p>
+
+      <div id="modal-tags" class="flex flex-wrap gap-2 mb-6"></div>
+
+      <div id="modal-links" class="flex flex-wrap gap-3"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("detail-modal")!;
+  const backdrop = document.getElementById("modal-backdrop")!;
+  const closeBtn = document.getElementById("modal-close")!;
+  const modalTitle = document.getElementById("modal-title")!;
+  const modalSubtitle = document.getElementById("modal-subtitle")!;
+  const modalDate = document.getElementById("modal-date")!;
+  const modalGrade = document.getElementById("modal-grade")!;
+  const modalDescription = document.getElementById("modal-description")!;
+  const modalTags = document.getElementById("modal-tags")!;
+  const modalLinks = document.getElementById("modal-links")!;
+  const modalBannerImg = document.getElementById("modal-banner-img")!;
+
+  function openModal(trigger: HTMLElement) {
+    const title = trigger.dataset.title || "";
+    const subtitle = trigger.dataset.subtitle || "";
+    const date = trigger.dataset.date || "";
+    const description = trigger.dataset.description || "";
+    const image = trigger.dataset.image || "";
+    const gradient = trigger.dataset.gradient || "from-gray-700 to-gray-900";
+    const tags = trigger.dataset.tags ? trigger.dataset.tags.split(",").filter(Boolean) : [];
+    const links = trigger.dataset.links ? JSON.parse(trigger.dataset.links) : [];
+    const grade = trigger.dataset.grade || "";
+
+    modalTitle.textContent = title;
+    modalSubtitle.textContent = subtitle;
+    modalDate.textContent = date;
+    modalGrade.textContent = grade;
+    modalDescription.textContent = description;
+
+    if (image) {
+      modalBannerImg.innerHTML = `<img src="${image}" alt="${title}" class="w-full h-full object-cover" />`;
+    } else {
+      modalBannerImg.className = `w-full h-full bg-gradient-to-br ${gradient}`;
+      modalBannerImg.innerHTML = "";
+    }
+
+    modalTags.innerHTML = tags
+      .map((t: string) => `<span class="text-xs px-2.5 py-1 bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-white rounded-full">${t}</span>`)
+      .join("");
+
+    modalLinks.innerHTML = links
+      .map((l: { label: string; href: string }) =>
+        `<a href="${l.href}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-white text-gray-900 font-semibold rounded text-sm hover:bg-gray-200 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          ${l.label}
+        </a>`
+      )
+      .join("");
+
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("click", (e) => {
+    const trigger = (e.target as HTMLElement).closest(".detail-trigger");
+    if (trigger) openModal(trigger as HTMLElement);
+  });
+
+  closeBtn.addEventListener("click", closeModal);
+  backdrop.addEventListener("click", closeModal);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+</script>

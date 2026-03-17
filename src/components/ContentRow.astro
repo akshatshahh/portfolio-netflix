@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string
+  id?: string
+}
+
+const { title, id } = Astro.props
+---
+
+<section id={id} class="relative py-8 md:py-10">
+  <h2 class="font-display text-xl md:text-2xl tracking-wider text-gray-900 dark:text-white px-6 md:px-12 mb-3">
+    {title}
+  </h2>
+
+  <div class="group/row relative">
+    <!-- Left arrow -->
+    <button
+      class="row-arrow row-arrow-left absolute left-0 top-0 bottom-0 z-20 w-10 md:w-14 flex items-center justify-center bg-black/40 dark:bg-black/60 opacity-0 group-hover/row:opacity-100 transition-opacity cursor-pointer hover:bg-black/60 dark:hover:bg-black/80"
+      aria-label="Scroll left"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+
+    <!-- Cards container -->
+    <div class="row-scroll flex gap-2 md:gap-3 overflow-x-auto px-6 md:px-12 scroll-smooth">
+      <slot />
+    </div>
+
+    <!-- Right arrow -->
+    <button
+      class="row-arrow row-arrow-right absolute right-0 top-0 bottom-0 z-20 w-10 md:w-14 flex items-center justify-center bg-black/40 dark:bg-black/60 opacity-0 group-hover/row:opacity-100 transition-opacity cursor-pointer hover:bg-black/60 dark:hover:bg-black/80"
+      aria-label="Scroll right"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll(".row-arrow").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const container = btn.parentElement?.querySelector(".row-scroll");
+      if (!container) return;
+      const scrollAmount = container.clientWidth * 0.75;
+      if (btn.classList.contains("row-arrow-left")) {
+        container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      } else {
+        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    });
+  });
+</script>
