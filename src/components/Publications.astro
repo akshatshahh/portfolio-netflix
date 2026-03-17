@@ -1,0 +1,30 @@
+---
+import ContentRow from "./ContentRow.astro"
+import NetflixCard from "./NetflixCard.astro"
+
+const PUBLICATIONS = [
+  {
+    title: "Credit Card Fraud Detection",
+    subtitle: "Akshat Shah, Yogeshvari Makwana",
+    date: "Review Paper · Cited by 12",
+    description: "A comprehensive review paper exploring credit card fraud detection systems, covering statistical techniques, machine learning algorithms, and deep learning models including CNNs and RNNs for identifying fraudulent transactions. Published through the Department of CSE, Indus Institute of Technology, Indus University, Ahmedabad. The paper analyzes rule-based systems, their limitations, and how ML and deep learning approaches overcome them by learning patterns from transaction data such as amount, location, time, and customer history.",
+    image: "/projects/credit-card-fraud.png",
+    tags: ["Machine Learning", "Deep Learning", "Fraud Detection", "Review Paper"],
+    links: [{ label: "Google Scholar", href: "https://scholar.google.com/citations?user=vjY9QGsAAAAJ&hl=en" }],
+  },
+]
+---
+
+<ContentRow title="PUBLICATIONS" id="publications">
+  {PUBLICATIONS.map((pub) => (
+    <NetflixCard
+      title={pub.title}
+      subtitle={pub.subtitle}
+      date={pub.date}
+      description={pub.description}
+      image={pub.image}
+      tags={pub.tags}
+      links={pub.links}
+    />
+  ))}
+</ContentRow>

@@ -26,6 +26,9 @@ EXPERIENCE:
 - Student Worker, USC Auxiliary Services (Dec 2024-Mar 2025): USC Bookstore operations, customer service, invoicing, POS.
 - Software Engineer Intern, Microsoft Corporation, Hyderabad (June-July 2023): ODSP team (OneDrive & SharePoint). Built interactive dashboards for product performance monitoring. Created Power Automate automated alerts for process monitoring.
 
+PUBLICATIONS:
+- Credit Card Fraud Detection (Review Paper): Co-authored with Yogeshvari Makwana at Indus University. Comprehensive review of fraud detection systems covering statistical techniques, ML algorithms, and deep learning models (CNNs, RNNs). Cited by 12. Published on Google Scholar.
+
 PROJECTS:
 - Chase (Unity WebGL Game): Interactive browser-playable game built with Unity as a team of 5 for USC's CSCI 526 Advanced Mobile Devices and Game Consoles course. Features real-time gameplay mechanics, physics-based interactions, enemy AI, and dynamic level design.
 - Multilingual Self-Debugging Framework: Built a multilingual self-debugging framework for Python and JavaScript using LLMs (StarCoder), inspired by the LDB paradigm. Used static Control Flow Graph (CFG) analysis and dynamic execution tracing for block-wise iterative debugging. Improved accuracy by 7% over baseline prompting using MBPP and MdEval datasets.
